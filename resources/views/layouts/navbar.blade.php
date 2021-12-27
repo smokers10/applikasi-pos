@@ -9,7 +9,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i>Keluar</a>
+            <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Keluar</a>
         </li>
     </ul>
 </nav>

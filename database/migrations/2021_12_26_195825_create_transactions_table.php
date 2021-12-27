@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('buyer_contact', 20);
             $table->integer('payments_total');
             $table->string('no_invoice', 30);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

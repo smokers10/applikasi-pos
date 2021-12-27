@@ -16,6 +16,7 @@ class CreateStokUnitsTable extends Migration
         Schema::create('stok_units', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

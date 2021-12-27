@@ -15,13 +15,13 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>POS</b>Toko - Admin</a>
+            <a href="#"><b>POS</b>Toko</a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in untuk memulai</p>
 
-                <form action="{{ route('admin.login.post') }}" method="post">
+                <form action="{{ route('login.post') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" placeholder="masukan email" value="{{ old('email') }}" autofocus required>
@@ -33,7 +33,12 @@
                         @error('email')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
+
+                        @if(session()->has('login-error'))
+                        <div class="invalid-feedback">{{ session('login-error') }}</div>
+                        @endif
                     </div>
+
                     <div class="input-group mb-3">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" placeholder="masukan password" required>
                         <div class="input-group-append">
@@ -41,7 +46,7 @@
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        @error('error')
+                        @error('password')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
@@ -55,10 +60,6 @@
                         </div>
                         <!-- /.col -->
                     </div>
-
-                    <p class="mb-1">
-                        <a href="{{route('cashier.login')}}">Login Sebagai Cashier</a>
-                    </p>
                 </form>
             </div>
         </div>

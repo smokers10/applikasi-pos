@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     // login Page
-    public function LoginPage() {
+    public function login() {
         return view('auth/login');
     }
 
@@ -18,5 +18,17 @@ class LoginController extends Controller
             'password' => ['required', 'min:6'],
         ]);
         
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/home');
+        }
+
+        return back()->with('login-error', 'Login gagal check email atau password');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/');
     }
 }
