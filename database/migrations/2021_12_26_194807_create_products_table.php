@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('stok');
             $table->integer('stok_unit_id');
             $table->integer('category_id');
+            $table->integer('selling_points')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

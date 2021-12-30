@@ -17,6 +17,7 @@ class CreateTransactionItemsTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('quantity');
+            $table->integer('transaction_id');
             $table->timestamps();
         });
     }

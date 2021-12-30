@@ -25,40 +25,42 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('category') || Request::is('stock-unit') ? 'active' : null }}">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-database"></i>
-                        <p>
-                            Produk
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
+                @if( auth()->user()->role == "admin" )
+                    <li class="nav-item {{ request()->is('product/*') ? 'active' : null }}">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-database"></i>
+                            <p>
+                                Produk
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
 
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('stock-unit') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Satuan Stok</p>
-                            </a>
-                        </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('stock-unit') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Satuan Stok</p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('category') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Kategori Produk</p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ route('category') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori Produk</p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('product') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Produk</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item">
+                                <a href="{{ route('product') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Produk</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
 
-                <li class="nav-item">
+                <li class="nav-item {{ request()->is('cashier/*') ? 'active' : null }}">
                     <a href="{{ route('cashier') }}" class="nav-link">
                         <i class="fas fa-shopping-cart"></i>
                         <p>
@@ -67,14 +69,18 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('user') }}" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <p>
-                            User
-                        </p>
-                    </a>
-                </li>
+                @if( auth()->user()->role == "admin" )
+                    <li class="nav-item {{ request()->is('user/*') ? 'active' : null }}">
+                        <a href="{{ route('user') }}" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <p>
+                                User
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
+            
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

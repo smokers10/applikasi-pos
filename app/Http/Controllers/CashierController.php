@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CashierController extends Controller
 {
@@ -11,6 +12,7 @@ class CashierController extends Controller
     }
 
     public function index(){
-        return view('cashier');
+        $products = Product::all();
+        return view('cashier', compact('products'));
     }
 }

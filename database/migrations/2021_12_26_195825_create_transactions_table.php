@@ -15,10 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('buyer_name', 60);
-            $table->string('buyer_address', 80);
-            $table->string('buyer_contact', 20);
-            $table->integer('payments_total');
+            $table->string('buyer_name', 60)->nullable();
+            $table->string('buyer_address', 80)->nullable();
+            $table->string('buyer_contact', 20)->nullable();
+            $table->integer('payment_total');
+            $table->integer('payment');
+            $table->integer('return');
             $table->string('no_invoice', 30);
             $table->softDeletes();
             $table->timestamps();

@@ -9,5 +9,4 @@ class Transaction extends Controller
     public function __constructor(){
         return $this->middleware('auth');
     }
-
 }
