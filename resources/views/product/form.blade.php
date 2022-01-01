@@ -104,7 +104,7 @@
             </div>
 
             <div id="notif-foot" class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclilck="resetForm()">Tambah Lagi</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetForm()">Tambah Lagi</button>
                 <a class="btn btn-primary" href="{{ route('product') }}">Selesai Menambahkan</a>
             </div>
         </div>

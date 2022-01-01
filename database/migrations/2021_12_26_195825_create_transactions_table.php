@@ -18,10 +18,13 @@ class CreateTransactionsTable extends Migration
             $table->string('buyer_name', 60)->nullable();
             $table->string('buyer_address', 80)->nullable();
             $table->string('buyer_contact', 20)->nullable();
-            $table->integer('payment_total');
+            $table->integer('subtotal');
+            $table->integer('total');
             $table->integer('payment');
             $table->integer('return');
             $table->string('no_invoice', 30);
+            $table->integer('user_id');
+            $table->enum('payment_method', ['Tunai', 'Transfer', 'Kartu Kredit']);
             $table->softDeletes();
             $table->timestamps();
         });

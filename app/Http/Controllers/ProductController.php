@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function update(Request $request) {
         $rules = [
             'name' => 'required',
-            'code' => 'required|min:8|max:20',
+            'code' => 'required|min:3|max:20',
             'selling_price' => 'required',
             'purchase_price' => 'required',
             'stok' => 'required',
@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function create(Request $request) {
         $rules = [
             'name' => 'required',
-            'code' => 'required|min:8|max:20',
+            'code' => 'required|min:3|max:20',
             'selling_price' => 'required',
             'purchase_price' => 'required',
             'stok' => 'required',

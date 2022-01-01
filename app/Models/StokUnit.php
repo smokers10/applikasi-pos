@@ -12,7 +12,7 @@ class StokUnit extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = ['name'];
 
-    public function Product(){
+    public function product(){
         return $this->hasMany(Product::class);
     }
 }

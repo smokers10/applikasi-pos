@@ -56,6 +56,13 @@
                                     <p>Data Produk</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('product') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Produk Masuk</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
@@ -79,23 +86,12 @@
                         </a>
                     </li>
                 @endif
-
             
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-clipboard"></i>
-                        <p>
-                            Penjualan
-                        </p>
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-file-alt"></i>
                         <p>
-                            Laporan
+                            Laporan Penjualan
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -104,14 +100,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Kasir</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Terlaris</p>
+                                <p>Per Kasir</p>
                             </a>
                         </li>
 

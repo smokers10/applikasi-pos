@@ -8,6 +8,7 @@ use App\Http\Controllers\StokUnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Transaction;
 
 
 /*
@@ -58,12 +59,16 @@ Route::middleware('auth')->prefix('/cashier')->group(function () {
     Route::get('/', [CashierController::class, 'index'])->name('cashier');
 });
 
+// Transaction
+Route::middleware('auth')->prefix('/transaction')->group(function(){
+    Route::post('/create', [Transaction::class, 'create'])->name('transaction.create');
+});
+
 // user
 Route::middleware("admin")->prefix('user')->group(function(){
     Route::get('/', [UserController::class, 'index'])->name('user');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
     Route::post('/create', [UserController::class, 'create'])->name('user.create');
-    // Route::post('/delete', [UserController::class, 'delete'])->name('user.delete');
 });
 
 

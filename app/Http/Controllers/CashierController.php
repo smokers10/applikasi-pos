@@ -12,7 +12,7 @@ class CashierController extends Controller
     }
 
     public function index(){
-        $products = Product::all();
+        $products = Product::where('stok', '>', 0)->get();
         return view('cashier', compact('products'));
     }
 }
