@@ -15,8 +15,9 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>POS</b>Toko</a>
+            <img src="{{ asset('asset/logo.png') }}" alt="" height="250" width="250">
         </div>
+
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in untuk memulai</p>
