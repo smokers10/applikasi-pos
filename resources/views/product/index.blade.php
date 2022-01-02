@@ -57,20 +57,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
-                                <tr>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->code }}</td>
-                                    <td>{{ $product->stok }} {{ $product->stok_unit->name }}</td>
-                                    <td>{{ $product->selling_price }}</td>
-                                    <td>{{ $product->selling_points }}</td>
-                                    <td>
-                                        <a class="btn btn-success" data-type="edit" href="{{ route('product.edit.page', $product->id) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-warning" data-type="edit" href="{{ route('product.edit.page', $product->id) }}"><i class="fas fa-eye white"></i></a>
-                                        <button class="btn btn-danger" data-type="delete" detail='{{$product}}' onclick="openCRUDModal(this)"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->code }}</td>
+                                        <td>{{ $product->stok }} {{ $product->stok_unit->name }}</td>
+                                        <td>{{ $product->selling_price }}</td>
+                                        <td>{{ $product->selling_points }}</td>
+                                        <td>
+                                            <a class="btn btn-success" data-type="edit" href="{{ route('product.edit.page', $product->id) }}"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-primary" detail='{{ $product }}' onclick="openProductInModal(this)"><i class="fas fa-truck-loading"></i></button>
+                                            <button class="btn btn-danger" data-type="delete" detail='{{$product}}' onclick="openCRUDModal(this)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -149,6 +149,40 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-barang-masuk">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-barang-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="#" method="post" id="product-in-form">
+                <input type="hidden" name="product_id" id="product_id">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="qty">Kuantitas Produk*</label>
+                        <input type="number" name="qty" id="qty" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplier_name">Nama Supplier*</label>
+                        <input type="text" name="supplier_name" id="supplier_name" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">batal</button>
+                    <button type="submit" class="btn btn-primary">Tambah Stok</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -180,6 +214,11 @@
         $("#user-form").submit(function(e){
             e.preventDefault()
             submit()
+        })
+
+        $("#product-in-form").submit(function(e){
+            e.preventDefault()
+            submitAddStok()
         })
     })
 
@@ -222,6 +261,47 @@
             },
             success: function(res){
                 $("#swal-title").text("Penghapusan selesai")
+                $("#swal-content").text('')
+                setTimeout(final(), 4000)
+            }
+        })
+    }
+
+    function final() {
+        $("#modal-swal").modal('hide')
+        location.reload()
+    }
+
+    // penambahan produk masuk
+    function openProductInModal(el){
+        const data = JSON.parse($(el).attr("detail"))
+        $("#product-in-form").trigger("reset")
+        $("#modal-barang-masuk").modal("show")
+        $("#modal-barang-title").text(`Tambah Stok ${data.name}`)
+        $("#product_id").val(data.id)
+    }
+
+    function submitAddStok(){
+        var formData = new FormData($('#product-in-form')[0]);
+        addStock(formData)
+    }
+
+    function addStock(data) {
+        $.ajax({
+            url:"{{ route('product.add.stock') }}",
+            type:"post",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('#modal-user').modal('hide')
+                $("#modal-swal").modal('show')
+                $("#swal-title").text("Mohon Tunggu")
+                $("#swal-content").text('Sedang Menambah Stok Produk')
+            },
+            success: function(res) {
+                $("#swal-title").text("Penambahan Stok Selesai")
                 $("#swal-content").text('')
                 setTimeout(final(), 4000)
             }

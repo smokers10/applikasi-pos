@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\StokUnit;
+use App\Models\TransactionItem;
 
 class Product extends Model
 {
@@ -32,5 +33,9 @@ class Product extends Model
 
     public function incoming_product() {
         return $this->hasMany(IncomingProduct::class);
+    }
+
+    public function transaction_item() {
+        return $this->hasMany(TransactionItem::class);
     }
 }

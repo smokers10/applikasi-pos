@@ -56,13 +56,6 @@
                                     <p>Data Produk</p>
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('product') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Produk Masuk</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 @endif
@@ -72,6 +65,15 @@
                         <i class="fas fa-shopping-cart"></i>
                         <p>
                             Kasir
+                        </p>
+                    </a>
+                </li>
+            
+                <li class="nav-item {{ request()->is('report/*') ? 'active' : null }}">
+                    <a href="{{ route('laporan') }}" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>
+                            Laporan Penjualan
                         </p>
                     </a>
                 </li>
@@ -86,32 +88,6 @@
                         </a>
                     </li>
                 @endif
-            
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file-alt"></i>
-                        <p>
-                            Laporan Penjualan
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Per Kasir</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Berkala</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </nav>
     </div>

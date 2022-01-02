@@ -8,8 +8,9 @@ use App\Http\Controllers\StokUnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Transaction;
-
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\GoodsInController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,9 @@ Route::middleware("admin")->prefix('product')->group(function () {
     Route::post('/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/update', [ProductController::class, 'update'])->name('product.update');
     Route::post('/delete', [ProductController::class, 'delete'])->name('product.delete');
+
+    // add product
+    Route::post('/add-stock', [GoodsInController::class, 'AddStock'])->name('product.add.stock');
 });
 
 // Fitur Cashier
@@ -61,7 +65,7 @@ Route::middleware('auth')->prefix('/cashier')->group(function () {
 
 // Transaction
 Route::middleware('auth')->prefix('/transaction')->group(function(){
-    Route::post('/create', [Transaction::class, 'create'])->name('transaction.create');
+    Route::post('/create', [TransactionController::class, 'create'])->name('transaction.create');
 });
 
 // user
@@ -71,5 +75,9 @@ Route::middleware("admin")->prefix('user')->group(function(){
     Route::post('/create', [UserController::class, 'create'])->name('user.create');
 });
 
-
+// laporan
+Route::middleware('auth')->prefix('/report')->group(function () {
+    Route::get('/', [LaporanController::class, 'index'])->name('laporan');
+    Route::get('/invoice/{id}', [LaporanController::class, 'invoice'])->name('laporan.invoice');
+});
 
